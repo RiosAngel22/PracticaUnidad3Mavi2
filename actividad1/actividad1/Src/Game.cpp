@@ -35,40 +35,46 @@ void Game::UpdatePhysics()
 {
     phyWorld->Step(frameTime, 8, 8); // Avanza la simulación física
     phyWorld->ClearForces(); // Limpia las fuerzas aplicadas a los cuerpos
-    phyWorld->DebugDraw(); // Dibuja el mundo físico (para depuración)
 }
 
 // Dibuja los elementos del juego en la ventana
 void Game::DrawGame()
 {
+    Color paredes = Color::Blue;
+
+
     // Dibujamos el suelo
     sf::RectangleShape groundShape(sf::Vector2f(500, 5));
-    groundShape.setFillColor(sf::Color::Red);
+    groundShape.setFillColor(paredes);
     groundShape.setPosition(0, 95);
     wnd->draw(groundShape);
 
     // Dibujamos las paredes
-    sf::RectangleShape leftWallShape(sf::Vector2f(10, alto)); // Alto de la ventana
-    leftWallShape.setFillColor(sf::Color::Red);
-    leftWallShape.setPosition(100, 0); // X = 100 para que comience donde termina el suelo
+    sf::RectangleShape leftWallShape(sf::Vector2f(5, 100)); // Alto de la ventana
+    leftWallShape.setFillColor(paredes);
+    leftWallShape.setPosition(0, 0); // X = 100 para que comience donde termina el suelo
     wnd->draw(leftWallShape);
 
-    sf::RectangleShape rightWallShape(sf::Vector2f(10, alto)); // Alto de la ventana
-    rightWallShape.setFillColor(sf::Color::Red);
-    rightWallShape.setPosition(90, 0); // X = 90 para que comience donde termina el suelo
+    sf::RectangleShape rightWallShape(sf::Vector2f(5, 100)); // Alto de la ventana
+    rightWallShape.setFillColor(paredes);
+    rightWallShape.setPosition(95, 0); // X = 90 para que comience donde termina el suelo
     wnd->draw(rightWallShape);
 
     sf::RectangleShape ceilingShape(sf::Vector2f(500, 5));
-    ceilingShape.setFillColor(sf::Color::Red);
+    ceilingShape.setFillColor(paredes);
     ceilingShape.setPosition(0, 0);
     wnd->draw(ceilingShape);
 
 
-    for (int i = 0; i <= 5; i++) {
-        prueba->ObtenerPartes(i)->Actualizar();
-        prueba->ObtenerPartes(i)->Dibujar(*wnd);
+    if (!ragdolls.empty()) {
+        for (int j = 0; j < ragdolls.size(); j++){
+            for (int i = 0; i <= 5; i++) {
+                ragdolls[j].ObtenerPartes(i)->Actualizar();
+                ragdolls[j].ObtenerPartes(i)->Dibujar(*wnd);
+            }
+        }
     }
-
+    
 }
 
 // Procesa los eventos del sistema
@@ -84,7 +90,22 @@ void Game::DoEvents()
             break;
 
 
-        }
+        case Event::KeyPressed:
+            if (ragdolls.size() > 0) {
+                if (Keyboard::isKeyPressed(Keyboard::Space)) {
+                    for (int j = 0; j < ragdolls.size(); j++) {
+                             ragdolls[j].ObtenerPartes(0)->AplicarImpulso(b2Vec2(5000.0f, 0.0f), b2Vec2(0.0f,-150.0f));
+                    }
+                }
+            }
+            break;
+        
+        case Event::MouseButtonPressed:
+            Ragdoll* ragdoll = new Ragdoll(phyWorld, Vector2f(Mouse::getPosition(*wnd).x * 0.125,Mouse::getPosition(*wnd).y * 0.15),6.5f);
+            ragdolls.push_back(*ragdoll);
+            break;
+
+       }
     }
     
 }
@@ -123,11 +144,5 @@ void Game::InitPhysics()
     b2Body* rightWallBody = Box2DHelper::CreateRectangularStaticBody(phyWorld, 10, 100);
     rightWallBody->SetTransform(b2Vec2(100.0f, 50.0f), 0.0f);
 
-    sf::Vector2f Posicion;
-
-    Posicion.x = 75.0f;
-    Posicion.y = 15.0f;
-
-    prueba = new Ragdoll(phyWorld,Posicion);
 }
 

@@ -25,7 +25,8 @@ private:
 	int fps;
 
 	int velocidad = 10000;
-	Ragdoll* prueba;
+	
+	std::vector<Ragdoll>ragdolls;
 
 public:
 

@@ -41,7 +41,7 @@ private:
 	sf::Texture textura;
 public:
 
-	Ragdoll(b2World* phyworld,Vector2f posicion);
+	Ragdoll(b2World* phyworld,Vector2f posicion,float angulo);
 
 	Avatar* ObtenerPartes(int extremidad);
 };
