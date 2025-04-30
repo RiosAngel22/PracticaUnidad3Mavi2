@@ -68,13 +68,7 @@ void Game::DrawGame()
     Torreta->dibujarTorreta(wnd);
     Torreta->dibujarBalas(wnd);
 
-    caja1->dibujarCaja(wnd);
-    caja2->dibujarCaja(wnd);
-    caja3->dibujarCaja(wnd);
 
-    plataforma1->DibujarObstaculo(wnd);
-    plataforma2->DibujarObstaculo(wnd);
-    plataforma3->DibujarObstaculo(wnd);
 }
 
 // Procesa los eventos del sistema
@@ -88,9 +82,9 @@ void Game::DoEvents()
         case Event::Closed:
             wnd->close(); // Cierra la ventana
             break;
-        
+
         case Event::MouseButtonPressed:
-            Torreta->disparar(phyWorld,wnd);
+            Torreta->disparar(phyWorld, wnd);
         }
     }
     
@@ -130,7 +124,7 @@ void Game::InitPhysics()
     b2Body* rightWallBody = Box2DHelper::CreateRectangularStaticBody(phyWorld, 10, 100);
     rightWallBody->SetTransform(b2Vec2(100.0f, 50.0f), 0.0f);
 
-    Torreta = new torreta(Vector2f(30.0f, 1.0f), Vector2f(5.0f, 95.0f));
+    Torreta = new torreta(Vector2f(15.0f, 1.0f), Vector2f(5.0f, 95.0f));
 
     caja1 = new ObstaculoDinamico(phyWorld, Vector2f(55.0f, 25.0f), Vector2f(5.0f, 6.0f));
     caja2 = new ObstaculoDinamico(phyWorld, Vector2f(35.0f, 55.0f), Vector2f(5.0f, 6.0f));

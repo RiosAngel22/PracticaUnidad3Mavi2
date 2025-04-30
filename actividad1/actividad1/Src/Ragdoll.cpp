@@ -1,11 +1,14 @@
 #include "Ragdoll.h"
 #include "Box2DHelper.h"
 #include "Game.h"
+#include "iostream"
 
 using namespace sf;
 
 Ragdoll::Ragdoll(b2World* phyWorld,Vector2f posicion,float angulo) {
     textura.loadFromFile("rectangulo.png");
+
+    std::cout << "Spawneado en: " << posicion.x << " ; " << posicion.y<<std::endl;
 
     //cabeza---------------------------------------------------------------------
     cabezaBody = Box2DHelper::CreateRectangularDynamicBody(phyWorld, 1.8 , 2 , 5, 1, 1);

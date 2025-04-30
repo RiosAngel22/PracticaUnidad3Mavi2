@@ -18,7 +18,24 @@ void torreta::apuntar(RenderWindow *wnd) {
     //atan2 devuelve el angulo entre la diferencia de 2 puntos
     float valor = std::atan2(Mouse::getPosition(*wnd).y * 0.17 - TorretaBody->getPosition().y, Mouse::getPosition(*wnd).x * 0.125 - TorretaBody->getPosition().x);
 
-    ValorEnGrados = valor * 180 / 3.14;
+    ValorEnGrados = valor * 180.0 / 3.14;
+
+    Vector2f Pos;
+
+    //el seno y -cos nos dan un angulo recto para la circunferencia de la torreta
+
+    //cuenta calculada con un grafico
+    //sen de grado + 90 (agregado para arreglar el angulo) con un radio multiplicado * 25
+    Pos.x = sin((ValorEnGrados + 90) / 90) * 25;
+
+    //-cos de grado + 90 (agregado para arreglar el angulo) con un radio multiplicado * 25
+    Pos.y = -cos((ValorEnGrados + 90) / 90) * 25;
+
+    velocidad.x = (Mouse::getPosition(*wnd).x -PosicionTorreta.x);
+    velocidad.y = (PosicionTorreta.y - Mouse::getPosition(*wnd).y) * -1;
+    
+    std::cout << velocidad.x << " : " << velocidad.y<<std::endl;
+    std::cout << Mouse::getPosition(*wnd).x << " : " << Mouse::getPosition(*wnd).y << std::endl;
 
     TorretaBody->setRotation(ValorEnGrados);
 }
@@ -26,29 +43,42 @@ void torreta::apuntar(RenderWindow *wnd) {
 void torreta::disparar(b2World *phyworld,RenderWindow *wnd) {
     //creamos los ragdolls a disparar
 
-    Ragdoll* ragdoll = new Ragdoll(phyworld, Vector2f(PosicionTorreta.x+10,PosicionTorreta.y-15), ValorEnGrados);
+    Vector2f Pos;
 
-    velocidad.x = (Mouse::getPosition(*wnd).x - PosicionTorreta.x);
-    velocidad.y = (Mouse::getPosition(*wnd).y - PosicionTorreta.y);
+    //el seno y -cos nos dan un angulo recto para la circunferencia de la torreta
+
+    //cuenta calculada con un grafico
+    //sen de grado + 90 (agregado para arreglar el angulo) con un radio multiplicado * 25
+    Pos.x = sin((ValorEnGrados + 90) / 90) * 25;
+
+    //-cos de grado + 90 (agregado para arreglar el angulo) con un radio multiplicado * 25
+    Pos.y = -cos((ValorEnGrados + 90) / 90) * 25;
+
+    Ragdoll* ragdoll = new Ragdoll(phyworld, Vector2f(Pos.x + 4.5, Pos.y + 104.5), ValorEnGrados);
+
+    velocidad.x = ( Mouse::getPosition(*wnd).x - PosicionTorreta.x) * 50;
+    velocidad.y = ((PosicionTorreta.y - Mouse::getPosition(*wnd).y) * 50) * -1;
 
 
-    for (int i = 0; i < 6; i++) {
-        ragdoll->ObtenerPartes(i)->AplicarImpulso(b2Vec2(velocidad.x, -velocidad.y), b2Vec2(0.0f, 0.0f));
-    }
+    ragdoll->ObtenerPartes(1)->AplicarImpulso(b2Vec2(velocidad.x, velocidad.y), b2Vec2(-25, 25));
     municion.push_back(ragdoll);
-}
+    }
+   
 
 void torreta::dibujarTorreta(RenderWindow* wnd) {
     wnd->draw(*TorretaBody);
 }
 
 void torreta::dibujarBalas(RenderWindow* wnd) {
-    for (int i = 0; i < municion.size(); i++) {
-        for (int j = 0; j < 5; j++) {
-            municion[i]->ObtenerPartes(j)->Actualizar();
-            municion[i]->ObtenerPartes(j)->Dibujar(*wnd);
-        }
+    if (!municion.empty()){
+        for (int i = 0; i < municion.size(); i++) {
+                for (int j = 0; j < 5; j++) {
+                    municion[i]->ObtenerPartes(j)->Actualizar();
+                    municion[i]->ObtenerPartes(j)->Dibujar(*wnd);
+                }
+            }
     }
+   
     
 }
 

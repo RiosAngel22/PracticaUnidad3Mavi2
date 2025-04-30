@@ -25,5 +25,6 @@ public:
 	void dibujarTorreta(RenderWindow *wnd);
 	void dibujarBalas(RenderWindow* wnd);
 	bool listoParaDisparar();
+
 };
 
