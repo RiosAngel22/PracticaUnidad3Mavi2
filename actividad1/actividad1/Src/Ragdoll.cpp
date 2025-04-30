@@ -1,12 +1,11 @@
 #include "Ragdoll.h"
 #include "Box2DHelper.h"
 #include "Game.h"
-#include "vector"
+#include "iostream"
 
 using namespace sf;
 
 Ragdoll::Ragdoll(b2World* phyWorld,Vector2f posicion,float angulo) {
-
     textura.loadFromFile("rectangulo.png");
 
     //cabeza---------------------------------------------------------------------

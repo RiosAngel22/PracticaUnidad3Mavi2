@@ -42,7 +42,6 @@ void Game::DrawGame()
 {
     Color paredes = Color::Blue;
 
-
     // Dibujamos el suelo
     sf::RectangleShape groundShape(sf::Vector2f(500, 5));
     groundShape.setFillColor(paredes);
@@ -66,15 +65,9 @@ void Game::DrawGame()
     wnd->draw(ceilingShape);
 
 
-    if (!ragdolls.empty()) {
-        for (int j = 0; j < ragdolls.size(); j++){
-            for (int i = 0; i <= 5; i++) {
-                ragdolls[j].ObtenerPartes(i)->Actualizar();
-                ragdolls[j].ObtenerPartes(i)->Dibujar(*wnd);
-            }
-        }
-    }
-    
+    Torreta->apuntar(wnd);
+    Torreta->dibujarTorreta(wnd);
+    Torreta->dibujarBalas(wnd);
 }
 
 // Procesa los eventos del sistema
@@ -88,24 +81,10 @@ void Game::DoEvents()
         case Event::Closed:
             wnd->close(); // Cierra la ventana
             break;
-
-
-        case Event::KeyPressed:
-            if (ragdolls.size() > 0) {
-                if (Keyboard::isKeyPressed(Keyboard::Space)) {
-                    for (int j = 0; j < ragdolls.size(); j++) {
-                             ragdolls[j].ObtenerPartes(0)->AplicarImpulso(b2Vec2(5000.0f, 0.0f), b2Vec2(0.0f,-150.0f));
-                    }
-                }
-            }
-            break;
         
         case Event::MouseButtonPressed:
-            Ragdoll* ragdoll = new Ragdoll(phyWorld, Vector2f(Mouse::getPosition(*wnd).x * 0.125,Mouse::getPosition(*wnd).y * 0.15),6.5f);
-            ragdolls.push_back(*ragdoll);
-            break;
-
-       }
+            Torreta->disparar(phyWorld,wnd);
+        }
     }
     
 }
@@ -143,6 +122,8 @@ void Game::InitPhysics()
 
     b2Body* rightWallBody = Box2DHelper::CreateRectangularStaticBody(phyWorld, 10, 100);
     rightWallBody->SetTransform(b2Vec2(100.0f, 50.0f), 0.0f);
+
+    Torreta = new torreta(sf::Vector2f(30.0f, 1.0f), sf::Vector2f(5.0f, 95.0f));
 
 }
 

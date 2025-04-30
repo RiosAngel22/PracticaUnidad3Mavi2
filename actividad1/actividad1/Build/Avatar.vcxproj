@@ -24,6 +24,7 @@
     <ClInclude Include="..\Src\Game.h" />
     <ClInclude Include="..\Src\Ragdoll.h" />
     <ClInclude Include="..\Src\SFMLRenderer.h" />
+    <ClInclude Include="..\Src\torreta.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Src\Avatar.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="..\Src\Game.cpp" />
     <ClCompile Include="..\Src\Ragdoll.cpp" />
     <ClCompile Include="..\Src\SFMLRenderer.cpp" />
+    <ClCompile Include="..\Src\torreta.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Pelota.png" />

@@ -4,6 +4,7 @@
 #include "SFMLRenderer.h"
 #include <list>
 #include "Avatar.h"
+#include "torreta.h"
 #include "Ragdoll.h"
 
 using namespace sf;
@@ -25,8 +26,8 @@ private:
 	int fps;
 
 	int velocidad = 10000;
-	
-	std::vector<Ragdoll>ragdolls;
+
+	torreta *Torreta;
 
 public:
 

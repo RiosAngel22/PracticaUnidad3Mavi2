@@ -1,9 +1,5 @@
 #pragma once
-#pragma once
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
 #include "SFMLRenderer.h"
-#include <list>
 #include "Avatar.h"
 
 class Ragdoll
