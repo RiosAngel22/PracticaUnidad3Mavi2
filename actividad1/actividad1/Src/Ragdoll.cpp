@@ -1,7 +1,6 @@
 #include "Ragdoll.h"
 #include "Box2DHelper.h"
 #include "Game.h"
-#include "iostream"
 
 using namespace sf;
 

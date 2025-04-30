@@ -1,8 +1,7 @@
 #include "Game.h"
 #include "Box2DHelper.h"
-#include <iostream>
 #include "Ragdoll.h"
-
+#include "ObstaculoDinamico.h"
 
 // Constructor de la clase Game
 Game::Game(int ancho, int alto, std::string titulo)
@@ -68,6 +67,14 @@ void Game::DrawGame()
     Torreta->apuntar(wnd);
     Torreta->dibujarTorreta(wnd);
     Torreta->dibujarBalas(wnd);
+
+    caja1->dibujarCaja(wnd);
+    caja2->dibujarCaja(wnd);
+    caja3->dibujarCaja(wnd);
+
+    plataforma1->DibujarObstaculo(wnd);
+    plataforma2->DibujarObstaculo(wnd);
+    plataforma3->DibujarObstaculo(wnd);
 }
 
 // Procesa los eventos del sistema
@@ -123,7 +130,15 @@ void Game::InitPhysics()
     b2Body* rightWallBody = Box2DHelper::CreateRectangularStaticBody(phyWorld, 10, 100);
     rightWallBody->SetTransform(b2Vec2(100.0f, 50.0f), 0.0f);
 
-    Torreta = new torreta(sf::Vector2f(30.0f, 1.0f), sf::Vector2f(5.0f, 95.0f));
+    Torreta = new torreta(Vector2f(30.0f, 1.0f), Vector2f(5.0f, 95.0f));
+
+    caja1 = new ObstaculoDinamico(phyWorld, Vector2f(55.0f, 25.0f), Vector2f(5.0f, 6.0f));
+    caja2 = new ObstaculoDinamico(phyWorld, Vector2f(35.0f, 55.0f), Vector2f(5.0f, 6.0f));
+    caja3 = new ObstaculoDinamico(phyWorld, Vector2f(80.0f, 20.0f), Vector2f(5.0f, 6.0f));
+
+    plataforma1 = new ObstaculoEstatico(phyWorld, Vector2f(55.0f, 28.0f), Vector2f(10.0f, 2.0f),Color::Green);
+    plataforma2 = new ObstaculoEstatico(phyWorld, Vector2f(35.0f, 60.0f), Vector2f(10.0f, 2.0f), Color::Green);
+    plataforma3 = new ObstaculoEstatico(phyWorld, Vector2f(80.0f, 25.0f), Vector2f(10.0f, 2.0f), Color::Green);
 
 }
 

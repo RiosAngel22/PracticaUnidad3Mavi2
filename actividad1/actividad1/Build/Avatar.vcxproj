@@ -22,6 +22,8 @@
     <ClInclude Include="..\Src\Avatar.h" />
     <ClInclude Include="..\Src\Box2DHelper.h" />
     <ClInclude Include="..\Src\Game.h" />
+    <ClInclude Include="..\Src\ObstaculoDinamico.h" />
+    <ClInclude Include="..\Src\ObstaculoEstatico.h" />
     <ClInclude Include="..\Src\Ragdoll.h" />
     <ClInclude Include="..\Src\SFMLRenderer.h" />
     <ClInclude Include="..\Src\torreta.h" />
@@ -30,6 +32,8 @@
     <ClCompile Include="..\Src\Avatar.cpp" />
     <ClCompile Include="..\Src\Box2dEmptyApp.cpp" />
     <ClCompile Include="..\Src\Game.cpp" />
+    <ClCompile Include="..\Src\ObstaculoDinamico.cpp" />
+    <ClCompile Include="..\Src\ObstaculoEstatico.cpp" />
     <ClCompile Include="..\Src\Ragdoll.cpp" />
     <ClCompile Include="..\Src\SFMLRenderer.cpp" />
     <ClCompile Include="..\Src\torreta.cpp" />

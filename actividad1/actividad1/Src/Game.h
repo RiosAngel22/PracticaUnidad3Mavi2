@@ -1,11 +1,7 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include "SFMLRenderer.h"
-#include <list>
-#include "Avatar.h"
 #include "torreta.h"
-#include "Ragdoll.h"
+#include "ObstaculoDinamico.h"
+#include "ObstaculoEstatico.h"
 
 using namespace sf;
 class Game
@@ -28,6 +24,13 @@ private:
 	int velocidad = 10000;
 
 	torreta *Torreta;
+	ObstaculoDinamico *caja1;
+	ObstaculoDinamico *caja2;
+	ObstaculoDinamico *caja3;
+
+	ObstaculoEstatico* plataforma1;
+	ObstaculoEstatico* plataforma2;
+	ObstaculoEstatico* plataforma3;
 
 public:
 
