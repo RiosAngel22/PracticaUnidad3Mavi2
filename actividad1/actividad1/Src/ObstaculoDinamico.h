@@ -13,5 +13,6 @@ private:
 public:
 	ObstaculoDinamico(b2World *Phyworld, Vector2f Posicion, Vector2f Tamaño);
 	void dibujarCaja(RenderWindow* wnd);
+	b2Body* ObtenerBody();
 };
 

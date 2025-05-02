@@ -34,7 +34,12 @@ private:
 
 	std::vector<Avatar*> Extremidades;
 
-	sf::Texture textura;
+	Texture Cara;
+	Texture Torso;
+	Texture Mano;
+	Texture Pierna;
+
+
 public:
 
 	Ragdoll(b2World* phyworld,Vector2f posicion,float angulo);

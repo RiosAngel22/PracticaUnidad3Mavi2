@@ -39,8 +39,13 @@
     <ClCompile Include="..\Src\torreta.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Pelota.png" />
+    <Image Include="caja.png" />
+    <Image Include="cara.png" />
+    <Image Include="mano.png" />
+    <Image Include="pierna.png" />
+    <Image Include="plataforma.png" />
     <Image Include="rectangulo.png" />
+    <Image Include="torso.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{96C674D7-9E95-4F51-966C-1A0545981942}</ProjectGuid>

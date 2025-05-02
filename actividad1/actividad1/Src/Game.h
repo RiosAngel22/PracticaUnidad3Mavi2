@@ -27,10 +27,16 @@ private:
 	ObstaculoDinamico *caja1;
 	ObstaculoDinamico *caja2;
 	ObstaculoDinamico *caja3;
+	ObstaculoDinamico* caja4;
 
 	ObstaculoEstatico* plataforma1;
 	ObstaculoEstatico* plataforma2;
 	ObstaculoEstatico* plataforma3;
+
+	b2DistanceJoint* Resorte1;
+	b2DistanceJoint* Resorte2;
+	b2DistanceJoint* Resorte3;
+
 
 public:
 

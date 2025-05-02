@@ -3,7 +3,7 @@
 #include "Game.h"
 
 ObstaculoDinamico::ObstaculoDinamico(b2World *Phyworld, Vector2f Posicion, Vector2f Tamaño){
-	textura.loadFromFile("rectangulo.png");
+	textura.loadFromFile("caja.png");
 
 	ObstaculoBody = Box2DHelper::CreateRectangularDynamicBody(Phyworld, Tamaño.x, Tamaño.y, 1.5f, 0.5f, 0.2f);
 
@@ -14,4 +14,8 @@ ObstaculoDinamico::ObstaculoDinamico(b2World *Phyworld, Vector2f Posicion, Vecto
 void ObstaculoDinamico::dibujarCaja(RenderWindow *wnd){
 	ObstaculoAvatar->Actualizar();
 	ObstaculoAvatar->Dibujar(*wnd);
+}
+
+b2Body* ObstaculoDinamico::ObtenerBody() {
+	return ObstaculoBody;
 }

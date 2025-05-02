@@ -70,7 +70,22 @@
     <Image Include="rectangulo.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Pelota.png">
+    <Image Include="caja.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="plataforma.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="pierna.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="cara.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="torso.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="mano.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
