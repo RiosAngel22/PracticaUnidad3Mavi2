@@ -67,9 +67,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="rectangulo.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="caja.png">
       <Filter>Resource Files</Filter>
     </Image>

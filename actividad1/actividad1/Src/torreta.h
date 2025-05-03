@@ -9,8 +9,6 @@ class torreta
 {
 private:
 	b2Body* TorretaBody;
-	b2Body* estante;
-
 	Avatar* TorretaAvatar;
 	
 	RectangleShape EstanteShape;
@@ -22,7 +20,6 @@ private:
 	Vector2f PosicionTorreta;
 	Vector2f TamañoTorreta;
 
-	b2RevoluteJoint* pivotTorreta;
 	Vector2f velocidad;
 
 	float ValorEnGrados = 0;

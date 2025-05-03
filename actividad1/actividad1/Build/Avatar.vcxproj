@@ -44,7 +44,6 @@
     <Image Include="mano.png" />
     <Image Include="pierna.png" />
     <Image Include="plataforma.png" />
-    <Image Include="rectangulo.png" />
     <Image Include="torso.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

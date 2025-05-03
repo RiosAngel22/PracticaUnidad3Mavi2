@@ -65,6 +65,7 @@ void Game::DrawGame()
     wnd->draw(ceilingShape);
 
 
+    //dibujamos y actualizamos fisicas
     Torreta->apuntar(wnd);
     Torreta->dibujarTorreta(wnd);
 
@@ -132,18 +133,22 @@ void Game::InitPhysics()
     b2Body* rightWallBody = Box2DHelper::CreateRectangularStaticBody(phyWorld, 10, 100);
     rightWallBody->SetTransform(b2Vec2(100.0f, 50.0f), 0.0f);
 
+
+    //creamos la torreta
     Torreta = new torreta(phyWorld,Vector2f(15.0f, 10.0f), Vector2f(20.0f, 85.0f));
 
+    //creamos las cajas
     caja1 = new ObstaculoDinamico(phyWorld, Vector2f(55.0f, 25.0f), Vector2f(5.0f, 6.0f));
     caja2 = new ObstaculoDinamico(phyWorld, Vector2f(35.0f, 65.0f), Vector2f(5.0f, 6.0f));
     caja3 = new ObstaculoDinamico(phyWorld, Vector2f(80.0f, 20.0f), Vector2f(5.0f, 6.0f));
     caja4 = new ObstaculoDinamico(phyWorld, Vector2f(65.0f, 50.0f), Vector2f(5.0f, 6.0f));
 
-
+    //creamos las plataformas estaticas
     plataforma1 = new ObstaculoEstatico(phyWorld, Vector2f(55.0f, 28.0f), Vector2f(10.0f, 2.0f),Color::Green);
     plataforma2 = new ObstaculoEstatico(phyWorld, Vector2f(35.0f, 60.0f), Vector2f(10.0f, 2.0f), Color::Green);
     plataforma3 = new ObstaculoEstatico(phyWorld, Vector2f(80.0f, 25.0f), Vector2f(10.0f, 2.0f), Color::Green);
     
+    //establecemos los resortes
     Resorte1 = Box2DHelper::CreateDistanceJoint(phyWorld, plataforma2->ObtenerBody(), plataforma2->ObtenerBody()->GetWorldCenter(), caja2->ObtenerBody(), caja2->ObtenerBody()->GetWorldCenter(), 10, 1,0.3);
     Resorte1->SetMaxLength(15);
     Resorte1->SetMinLength(1);
